@@ -48,7 +48,7 @@ export default class extends React.PureComponent {
                     opacity,
                     transform: [
                        { translateX },
-                      { scale }
+                      {  scale }
                     ]
                   }]}
                 >

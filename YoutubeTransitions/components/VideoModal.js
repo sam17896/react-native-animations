@@ -84,13 +84,9 @@ function runSpring(clock, value, dest) {
 
 export default class VideoModal extends React.PureComponent {
   translationY = new Value(0);
-
   velocityY = new Value(0);
-
   offsetY = new Value(0);
-
   offsetY2 = new Value(0);
-
   gestureState = new Value(State.UNDETERMINED);
 
   onGestureEvent
