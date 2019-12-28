@@ -17,6 +17,10 @@ import UberEats, {
 const AppNavigator = createAppContainer(
   createStackNavigator(
     {
+      Chrome: {
+        screen: Chrome,
+        navigationOptions: { title: "Google Chrome" }
+      },
       UberEats: {
         screen: UberEats,
         navigationOptions: {
@@ -41,10 +45,6 @@ const AppNavigator = createAppContainer(
       Things: {
         screen: Things,
         navigationOptions: { title: "Things" }
-      },
-      Chrome: {
-        screen: Chrome,
-        navigationOptions: { title: "Google Chrome" }
       }
     },
     {
