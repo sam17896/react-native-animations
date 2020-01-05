@@ -17,9 +17,12 @@ import UberEats, {
 const AppNavigator = createAppContainer(
   createStackNavigator(
     {
-      Chrome: {
-        screen: Chrome,
-        navigationOptions: { title: "Google Chrome" }
+      Episodes: {
+        screen: Episodes,
+        navigationOptions: {
+          title: "Can it be done in React Native?",
+          headerBackTitle: null
+        }
       },
       UberEats: {
         screen: UberEats,
@@ -28,13 +31,11 @@ const AppNavigator = createAppContainer(
           header: () => null
         }
       },
-      Episodes: {
-        screen: Episodes,
-        navigationOptions: {
-          title: "Can it be done in React Native?",
-          headerBackTitle: null
-        }
+      Chrome: {
+        screen: Chrome,
+        navigationOptions: { title: "Google Chrome" }
       },
+    
       LiquidSwipe: {
         screen: LiquidSwipe,
         navigationOptions: {

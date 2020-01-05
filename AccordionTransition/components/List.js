@@ -2,11 +2,19 @@ import React, { useState } from "react";
 import { StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 
 import Animated, { Easing } from "react-native-reanimated";
-import { bInterpolate, bin, useTransition } from "react-native-redash";
+import { bInterpolate, bin, useTransition, withTransition, onGestureEvent } from "react-native-redash";
 import Chevron from "./Chevron";
 import Item, { LIST_ITEM_HEIGHT } from "./ListItem";
-
-const { not, interpolate } = Animated;
+import { PanGestureHandler, State } from "react-native-gesture-handler";
+const {
+  Value,
+  cond,
+  useCode,
+  eq,
+  not,
+  set,
+  interpolate
+} = Animated;
 const styles = StyleSheet.create({
   container: {
     marginTop: 16,
@@ -29,14 +37,10 @@ const styles = StyleSheet.create({
 
 
 export default ({ list }) => {
-  const [open, setOpen] = useState(false);
-  const transition = useTransition(
-    open,
-    not(bin(open)),
-    bin(open),
-    400,
-    Easing.inOut(Easing.ease)
-  );
+  const open = new Value(0);
+  const transition = withTransition(open);
+  const state = new Value(State.UNDETERMINED);
+  const gestureHandler = onGestureEvent({state});
   const height = bInterpolate(
     transition,
     0,
@@ -46,9 +50,11 @@ export default ({ list }) => {
     inputRange: [0, 16 / 400],
     outputRange: [8, 0]
   });
+
+  useCode(() =>  cond(eq(state, State.END), set(open, not(open))), [open, state])
   return (
     <>
-      <TouchableWithoutFeedback onPress={() => setOpen(prev => !prev)}>
+      <PanGestureHandler {...gestureHandler}>
         <Animated.View
           style={[
             styles.container,
@@ -61,7 +67,7 @@ export default ({ list }) => {
           <Text style={styles.title}>Total Points</Text>
           <Chevron {...{ transition }} />
         </Animated.View>
-      </TouchableWithoutFeedback>
+      </PanGestureHandler>
       <Animated.View style={[styles.items, { height }]}>
         {list.items.map((item, key) => (
           <Item {...{ item, key }} isLast={key === list.items.length - 1} />
