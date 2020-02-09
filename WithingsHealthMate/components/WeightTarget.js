@@ -47,9 +47,6 @@ const WeightTarget = (props) => {
 
 
     const update = ({ value }, init) => {
-        // if (!init) {
-        //     setState({ ...state, initialized: true });
-        // }
         const { height: h, weight } = props;
         const BMI = scaleBMI.invert(value);
         const kg = BMI * h * h;

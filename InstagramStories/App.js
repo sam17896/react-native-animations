@@ -3,7 +3,7 @@ import React from 'react';
 import { StatusBar, View, ActivityIndicator, StyleSheet } from 'react-native';
 // Two implementations of the story components.
 // One using linear interpolation which doesn't make it a perfect cube and one with setNativeProps
- import { Stories } from './components';
+import { Stories, Stories2 } from './components';
 
 const stories = [
   {
@@ -59,7 +59,7 @@ export default class App extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" />
-        { <Stories {...{ stories }} /> }
+        {<Stories2 {...{ stories }} />}
       </View>
     );
   }
