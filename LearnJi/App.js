@@ -57,12 +57,12 @@ export default () => {
       <View style={styles.container}>
         <Translations
           max={(verticalPanHeight - 150) * -1}
-          {...{ emojis, translations, y, slider, index}}
+          {...{ emojis, translations, y, slider, index }}
         />
       </View>
       <Emojis {...{ emojis, x }} />
       <View style={styles.container}>
-      <Translation style={styles.english} lang="en" {...{ index }} />
+        <Translation style={styles.english} lang="en" {...{ index }} />
       </View>
       <Animated.ScrollView
         style={styles.verticalPan}
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     height: horizontalPanHeight
   },
   horizontalPanContent: {
-    width: EMOJI_WIDTH *  numberOfEmojis
+    width: EMOJI_WIDTH * numberOfEmojis
   },
   sliderContent: {
     width: width * (numberOfLanguages - 1)
